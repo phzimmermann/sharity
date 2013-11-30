@@ -1,0 +1,1 @@
+<a href="$ROOT_FOLDER/search/label/$LABEL">$LABEL</a>

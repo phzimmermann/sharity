@@ -1,0 +1,3 @@
+<div>
+	BoxInhalt: $CONTENT
+</div>

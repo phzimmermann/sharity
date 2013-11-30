@@ -1,0 +1,1 @@
+<a href="$ROOT_FOLDER/product/id/$ID/edit/true">Bearbeiten</a>

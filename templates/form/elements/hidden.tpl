@@ -1,0 +1,1 @@
+<input type="hidden" value="$VALUE" name="$NAME" />

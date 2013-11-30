@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteRule ^(public|media)($|/) - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.php?action=$0 [L]
+
