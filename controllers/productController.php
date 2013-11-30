@@ -26,7 +26,7 @@ class ProductController extends Controller {
 		}
 
 		if($this->edit == true && ($user == null || ($params['id'] != 0 && !$this->isOwner) )){
-			header('location:'.Configuration::ROOT_FOLDER.'/door/in');
+			header('location:'.Configuration::ROOT_FOLDER.'/door/type/in');
 			return;
 		}
 
@@ -38,16 +38,18 @@ class ProductController extends Controller {
 		$this->labels = Label::findByProduct($this->product);
 
 		if($this->edit){
+
 			$this->form = $this->getEditForm();
 
 			$this->form->populate(array(
 								'title' => $this->product->getName(),
-								'description' => $this->product->getDescription()
+								'description' => $this->product->getDescription(),
 							));
 
-
+			$this->form->setSubmited($params['submitIndicator']);
 
 			if($this->form->isSubmited()){
+
 				$this->form->populate($params);
 				$this->product->setUser($session->getUser());
 				$this->product->setName($params['title']);

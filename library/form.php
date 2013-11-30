@@ -44,7 +44,12 @@ class Form {
 	}
 
 	public function isSubmited(){
-		return $this->getElement('submitIndicator')->getValue();
+
+		return (bool)$this->getElement('submitIndicator')->getValue();
+	}
+
+	public function setSubmited($flag){
+		$this->getElement('submitIndicator')->setValue($flag);
 	}
 }
 
