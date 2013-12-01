@@ -81,14 +81,18 @@ class ProductController extends Controller {
 	public function render(){
 		$params = array();
 
+		$partialUser = new PartialUser($this->product->getUser());
 
-		$params['name'] = $this->product->getName();
-		$params['description'] = $this->product->getDescription();
-		$params['labels'] = '';
-		$params['imgurl'] = $this->product->getImage();
-		$params['editlink'] = !$this->edit && $this->isOwner
+
+		$params['name'] 		= $this->product->getName();
+		$params['description'] 	= $this->product->getDescription();
+		$params['id']			= $this->product->getId();
+		$params['labels'] 		= '';
+		$params['imgurl'] 		= $this->product->getImage();
+		$params['editlink'] 	= !$this->edit && $this->isOwner
 									? $this->renderSubtemplate('editlink', array('id' => $this->product->getId()))
 									: '';
+		$params['user'] 		= $partialUser->render();
 
 		if(count($this->labels) > 0){
 			foreach($this->labels as $label){
