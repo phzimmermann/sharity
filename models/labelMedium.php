@@ -11,8 +11,8 @@ class LabelMedium extends DBModel{
 		$this->_table = 'label_mediums';
 		parent::__construct($id);
 	}
-	
-	
+
+
 	public static function findAll($q, $bind = null){
 		$db = Database::getInstance();
 		$stmt = $db->prepare($q);
@@ -24,62 +24,61 @@ class LabelMedium extends DBModel{
 		}
 		return $result;
 	}
-	
-	
-	/*
-	public static function findByXAndY($x, $y){
-		return Comment::findAll('SELECT * FROM labelMediums WHERE x = :x AND y = :y;', array(':x' => $x, ':y' => $y));	
+
+
+
+	public static function findByMedium($medium){
+		return self::findAll('SELECT * FROM label_mediums WHERE mediumId = :medium;', array(':medium' => $medium->getId()));
 	}
-	*/
-	
-	
+
+
 	/*
 	public function __toString(){
 		return $this->x;
 	}
 	*/
-	
-	
-	
+
+
+
 	public function save(){
 		parent::doSave();
 	}
-	
-	
-	
-	
-	private function setLabelId($labelId) { $this->labelId = $labelId; }
-	private function getLabelId() { return $this->labelId; }
-	
-	function setLabel($label) { 
-		$this->label = $label; 
+
+
+
+
+	public function setLabelId($labelId) { $this->labelId = $labelId; }
+	public function getLabelId() { return $this->labelId; }
+
+	function setLabel($label) {
+		$this->label = $label;
 		$this->setLabelId($label->getId());
 	}
-	
-	function getLabel() { 
+
+	function getLabel() {
 		if($this->label === null){
 			$this->label = new Label($this->getLabelId());
 		}
-		return $this->label; 
+		return $this->label;
 	}
-	
-	
-	private function setMediumId($mediumId) { $this->mediumId = $mediumId; }
-	private function getMediumId() { return $this->mediumId; }
-	
-	function setMedium($medium) { 
-		$this->medium = $medium; 
+
+
+	public function setMediumId($mediumId) { $this->mediumId = $mediumId; }
+	public function getMediumId() { return $this->mediumId; }
+
+	function setMedium($medium) {
+		$this->medium = $medium;
 		$this->setMediumId($medium->getId());
 	}
-	
-	function getMedium() { 
+
+	function getMedium() {
 		if($this->medium === null){
 			$this->medium = new Medium($this->getMediumId());
 		}
-		return $this->medium; 
+		return $this->medium;
 	}
-		
-		
+
+
 
 }
 ?>
