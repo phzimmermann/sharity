@@ -1,1 +1,1 @@
-<a href="$ROOT_FOLDER/search/label/$LABEL">$LABEL</a>
+<a label-id="$LABELID" href="$ROOT_FOLDER/search/label/$LABEL">$LABEL</a>

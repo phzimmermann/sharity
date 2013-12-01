@@ -19,6 +19,10 @@ class Form {
 		return $this->elements[$name];
 	}
 
+	public function getElements(){
+		return $this->elements;
+	}
+
 	public function render(){
 		$this->getElement('submitIndicator')->setValue(true);
 		$tpl = Tpl::getInstance();

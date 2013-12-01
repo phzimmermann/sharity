@@ -35,7 +35,6 @@ class ProductController extends Controller {
 
 		$this->setTitle($this->product->getName());
 
-		$this->labels = Label::findByProduct($this->product);
 
 		if($this->edit){
 
@@ -55,9 +54,26 @@ class ProductController extends Controller {
 				$this->product->setName($params['title']);
 				$this->product->setDescription($params['description']);
 				$this->product->save();
+
+				// Save Labels
+
+				// - Delete all Labels
+				$labels = LabelMedium::findByMedium($this->product);
+				// - Add labels again
+				foreach($params['labels'] as $labelId){
+					$lm = new LabelMedium();
+					$label = new Label($labelId);
+					$lm->setLabel($label);
+					$lm->setMedium($this->product);
+					$lm->save();
+				}
+
 				$this->redirect('product/id/'.$this->product->getId());
 			}
 		}
+
+
+		$this->labels = Label::findByProduct($this->product);
 
 		return;
 	}
@@ -76,14 +92,22 @@ class ProductController extends Controller {
 
 		if(count($this->labels) > 0){
 			foreach($this->labels as $label){
-				$params['labels'] .= $this->renderPartialTemplate('label', array('label' => $label));
+				if($this->edit){
+					$params['labels'] .= $this->renderSubtemplate('labeledit', array('label' => $label));
+				}else{
+					$params['labels'] .= $this->renderPartialTemplate('label', array('label' => $label, 'labelid' => $label->getId()));
+				}
 			}
 		}
 
 
 		if($this->edit){
 			$this->setView('product/edit');
-			$params['form'] = $this->form->render();
+			$this->form->setSubmited(true);
+			$params['form'] = '';
+			foreach($this->form->getElements() as $element){
+				$params['form'] .= $element->render();
+			}
 		}
 
 		return $params;
