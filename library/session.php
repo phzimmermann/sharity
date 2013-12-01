@@ -11,6 +11,9 @@ class Session {
 		}
 	}
 
+	/**
+	 * @return Session
+	 */
 	public function getInstance(){
 		if($this->instance === null){
 			$this->instance = new self();
