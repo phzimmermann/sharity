@@ -7,23 +7,27 @@ class PartialLending extends Partial {
 	 */
 	private $lending;
 
-	public function __construct($lending){
+	private $template;
+
+	public function __construct($lending, $template = null){
 		parent::__construct('lending');
 		$this->lending = $lending;
+		$this->template = $template == null ? 'lending' : $template;
 	}
 
 	public function render(){
-		return $this->renderSubtemplate('lending', array(
+		return $this->renderSubtemplate($this->template, array(
 													'name' 			=> $this->lending->getMedium()->getName(),
 													'description' 	=> $this->lending->getMedium()->getDescription(),
-													'id'			=> $this->lending->getId()
+													'id'			=> $this->lending->getId(),
+													'status'		=> $this->lending->getLongStatus()
 													));
 	}
 
-	public static function wrap($lendings = array()){
+	public static function wrap($lendings = array(), $template = null){
 		$partials = array();
 		foreach($lendings as $lending){
-			$partials[] = new self($lending);
+			$partials[] = new self($lending, $template);
 		}
 		return $partials;
 	}

@@ -3,15 +3,16 @@
 </div>
 
 <div class="grid_2">
-	Logo
+	<a href="$ROOT_FOLDER/">Logo</a>
 </div>
 
 <div class="grid_2">
-	Schriftzug
+	Sharely
 </div>
 
 <div class="grid_6">
-	Navigation
+	<a href="$ROOT_FOLDER/product/id/0">+ Gegenstand bereitstellen</a>
+	<a href="$ROOT_FOLDER/search">Suchen</a>
 </div>
 
 <div class="grid_2">

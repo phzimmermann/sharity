@@ -8,6 +8,11 @@ class DashboardController extends Controller {
 	private $lendings = null;
 
 	/**
+	 * @var Lending[]
+	 */
+	private $asks = null;
+
+	/**
 	 * DashboardController::run()
 	 *
 	 * @param array $params
@@ -20,7 +25,7 @@ class DashboardController extends Controller {
 		$session = Session::getInstance();
 
 		$this->lendings = Lending::getByLender($session->getUser());
-
+		$this->asks = Lending::getByOwner($session->getUser());
 	}
 
 	/**
@@ -31,6 +36,16 @@ class DashboardController extends Controller {
 	public function render()
 	{
 		$params = array();
+
+		$params['lendings'] = '';
+		foreach(PartialLending::wrap($this->lendings) as $partial){
+			$params['lendings'] .= $partial;
+		}
+
+		$params['asks'] = '';
+		foreach(PartialLending::wrap($this->asks, 'ask') as $partial){
+			$params['asks'] .= $partial;
+		}
 
 		return $params;
 	}

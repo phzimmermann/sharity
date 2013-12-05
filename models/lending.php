@@ -46,9 +46,12 @@ class Lending extends DBModel{
 	}
 
 	public static function getByLender($user){
-		return self::findAll('SELECT id FROM lendings WHERE lenderId = :lenderid', array('lenderId' => $user->getId()));
+		return self::findAll('SELECT id FROM lendings WHERE lenderId = :lenderid', array('lenderid' => $user->getId()));
 	}
 
+	public static function getByOwner($user){
+		return self::findAll('SELECT l.id FROM lendings AS l INNER JOIN mediums AS m ON(l.mediumId = m.id) WHERE m.userId = :userid', array('userid' => $user->getId()));
+	}
 
 
 	/*

@@ -2,8 +2,8 @@
 	<div class="grid_6">
 		&copy; by Sharely 2014
 	</div>
-	
+
 	<div class="grid_6">
-		<a href="/impressum">Impressum</a>
+		<a href="$ROOT_FOLDER/impressum">Impressum</a>
 	</div>
 </div>
