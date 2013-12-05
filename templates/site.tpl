@@ -1,6 +1,8 @@
 <html>
 	<head>
 		<link href="$ROOT_FOLDER/public/css/960.css" type="text/css" rel="stylesheet" />
+		<link href="$ROOT_FOLDER/public/css/main.css" type="text/css" rel="stylesheet" />
+		<link href="$ROOT_FOLDER/public/css/normalize.css" type="text/css" rel="stylesheet" />
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<script src="$ROOT_FOLDER/public/js/script.js"></script>
 		<title>$SITETITLE - Sharely</title>
