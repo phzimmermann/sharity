@@ -35,6 +35,9 @@ class Medium extends DBModel{
 		return self::findAll('SELECT m.id FROM mediums AS m WHERE m.name LIKE :text OR m.description LIKE :text2;', array(':text' => '%'.$text.'%', ':text2' => '%'.$text.'%'));
 	}
 
+	public static function findByUser($user){
+		return self::findAll('SELECT m.id FROM mediums AS m WHERE m.userId = :user;', array(':user' => $user->getId()));
+	}
 
 
 	/*

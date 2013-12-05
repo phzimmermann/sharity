@@ -2,6 +2,11 @@
 
 class Lending extends DBModel{
 
+	const STATUS_PENDING 	= 'pending';
+	const STATUS_YES		= 'yes';
+	const STATUS_NO			= 'no';
+	const STATUS_WRONGDATE	= 'wrongdate';
+
 	private $datefrom;
 	private $dateto;
 	private $lender;
@@ -28,11 +33,22 @@ class Lending extends DBModel{
 	}
 
 
-	/*
-	   public static function findByXAndY($x, $y){
-	   return Comment::findAll('SELECT * FROM lendings WHERE x = :x AND y = :y;', array(':x' => $x, ':y' => $y));
-	   }
-	*/
+	public static function getAll($options){
+		$bind = array();
+		$where = 'WHERE 1';
+		$medium = isset($options['medium']) ? $options['medium'] : null;
+
+		if($medium !== null){
+			$where .= ' AND mediumId = :mediumId';
+			$bind['mediumId'] = $medium->getId();
+		}
+	   	return self::findAll('SELECT * FROM lendings '.$where, $bind);
+	}
+
+	public static function getByLender($user){
+		return self::findAll('SELECT id FROM lendings WHERE lenderId = :lenderid', array('lenderId' => $user->getId()));
+	}
+
 
 
 	/*
@@ -50,12 +66,18 @@ class Lending extends DBModel{
 
 
 	public function setDatefrom($datefrom) { $this->datefrom = $datefrom; }
-	public function getDatefrom() { return $this->datefrom; }
+	public function getDatefrom() {
+		return $this->datefrom;
+	}
 
 
 	public function setDateto($dateto) { $this->dateto = $dateto; }
-	public function getDateto() { return $this->dateto; }
+	public function getDateto() {
+		return $this->dateto;
+	}
 
+	public function setStatus($status) { $this->status = $status; }
+	public function getStatus() { return $this->status; }
 
 	public function setLenderId($lenderId) { $this->lenderId = $lenderId; }
 	public function getLenderId() { return $this->lenderId; }
@@ -88,7 +110,25 @@ class Lending extends DBModel{
 		return $this->medium;
 	}
 
-
+	function getLongStatus(){
+		$status = $this->getStatus();
+		$longStatus = '';
+		switch($status){
+			case self::STATUS_YES:
+				$longStatus = 'Angenommen';
+				break;
+			case self::STATUS_NO:
+				$longStatus = 'Abgelehnt';
+				break;
+			case self::STATUS_WRONGDATE:
+				$longStatus = 'Bitte anderes Datum wählen';
+				break;
+			case self::STATUS_PENDING:
+				$longStatus = 'Ausstehend';
+				break;
+		}
+		return $longStatus;
+	}
 
 }
 ?>
