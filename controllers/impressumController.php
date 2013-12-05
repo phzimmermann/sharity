@@ -11,7 +11,7 @@ class ImpressumController extends Controller {
 	 */
 	public function run($params = array())
 	{
-
+		$this->setTitle('Impressum');
 	}
 
 	/**
