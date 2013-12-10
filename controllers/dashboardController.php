@@ -13,6 +13,11 @@ class DashboardController extends Controller {
 	private $asks = null;
 
 	/**
+	 * @var Medium[]
+	 */
+	private $products = null;
+
+	/**
 	 * DashboardController::run()
 	 *
 	 * @param array $params
@@ -26,6 +31,7 @@ class DashboardController extends Controller {
 
 		$this->lendings = Lending::getByLender($session->getUser());
 		$this->asks = Lending::getByOwner($session->getUser());
+		$this->products = Medium::findByUser($session->getUser());
 	}
 
 	/**
@@ -45,6 +51,11 @@ class DashboardController extends Controller {
 		$params['asks'] = '';
 		foreach(PartialLending::wrap($this->asks, 'ask') as $partial){
 			$params['asks'] .= $partial;
+		}
+
+		$params['products'] = '';
+		foreach(PartialProduct::wrap($this->products) as $partial){
+			$params['products'] .= $partial;
 		}
 
 		return $params;

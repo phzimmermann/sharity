@@ -7,7 +7,7 @@
 </div>
 
 <div class="grid_2">
-	Sharely
+	Sharety
 </div>
 
 <div class="grid_6">

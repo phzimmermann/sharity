@@ -8,9 +8,9 @@
 	<p>
 		Herzlich willkommen auf unserer Seite. Hier können Sie Ihre wichtigsten Dinge Teilen an welche Sie nicht einmal Ihre liebsten Bekannten ranlassen würden.
 	</p>
-	
+
 	<p>
-		Viel Spass! Ihr Sharely Team
+		Viel Spass! Ihr Sharety Team
 	</p>
 </div>
 
