@@ -30,10 +30,10 @@ class ProductController extends Controller {
 			return;
 		}
 
-
-
-
-		$this->setTitle($this->product->getName());
+		$this->setTitle(
+			$this->edit
+			? 'Neues Produkt anlegen'
+			: $this->product->getName());
 
 
 		if($this->edit){

@@ -1,12 +1,6 @@
-
-
-<div class="grid_4">
-	Bild
-</div>
-
-<div class="grid_8">
+<div class="grid_6">
 	<p>
-		Herzlich willkommen auf unserer Seite. Hier können Sie Ihre wichtigsten Dinge Teilen an welche Sie nicht einmal Ihre liebsten Bekannten ranlassen würden.
+		M&ouml;chtest du Dinge Personen ausleihen, welche du nicht kennst? Hier können Sie Ihre wichtigsten Dinge Teilen an welche Sie nicht einmal Ihre liebsten Bekannten ranlassen würden.
 	</p>
 
 	<p>
@@ -14,8 +8,15 @@
 	</p>
 </div>
 
+<div class="grid_6">
+	<p>
+		<img src="$ROOT_FOLDER/public/img/sharity-home.png" />
+	</p>
+</div>
+
+
 <div class="grid_12">
-	$LABELS
+	<p>$LABELS</p>
 </div>
 
 $NEWEST

@@ -1,0 +1,123 @@
+
+
+
+a {
+	color: #888;
+	text-decoration:none;
+}
+
+a:hover {
+	color: #CCC;
+}
+
+
+
+img#page_logo {
+	width: 100%;
+}
+
+div#headerLine {
+	height: 2px;
+	background-color: #CCC;
+
+}
+
+input[type=text], input[type=password], textarea {
+	width: 180px;
+}
+
+input[type=submit] {
+	width: 180px;
+	font-size: 16px;
+	margin-top: 10px;
+	padding: 5px;
+}
+
+.formLabel {
+	margin-top: 10px;
+}
+
+div#headerFont {
+	font-family: 'Unica One';
+	font-weight: normal;
+	font-size: 42px;
+	padding-top: 40px;
+}
+
+div#footer {
+	margin-top: 10px;
+	background-color: #EFEFEF;
+	color: #333;
+	padding: 20px 0px;
+
+}
+
+h1 {
+	font-family: 'Unica One';
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+h2 {
+	font-weight: normal;
+}
+
+a.label {
+	color: #A8D6CA;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	padding: 5px;
+	border-bottom: 1px solid #CCC;
+	margin: 5px;
+}
+
+a.label:hover {
+	background-color: #CCC;
+}
+
+.mainNavi div.naviItem {
+	width: 105px;
+	float: left;
+	margin-top: 50px;
+}
+
+.mainNavi a:hover {
+	background-color: #A8D6CA;
+}
+
+.mainNavi span.icon{
+	font-size: 2.4em;
+	float: left;
+	margin: 0 12px 0 0;
+}
+
+.product .imageholder img {
+	width: 100%;
+}
+
+.product .imageholder {
+	height: 124px;
+	overflow: hidden;
+}
+
+#searchlabels {
+	width: 180px;
+	background-color: #A8D6CA;
+}
+
+#searchlabels .label {
+	float: left;
+	width: 175px;
+	font-size: inherit;
+	border: none;
+	padding: 0px;
+	color: #FFF;
+}
+
+#searchlabels .label:hover {
+	background-color: inherit;
+	text-decoration: underline;
+}

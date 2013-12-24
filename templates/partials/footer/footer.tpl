@@ -6,4 +6,5 @@
 	<div class="grid_6">
 		<a href="$ROOT_FOLDER/impressum">Impressum</a>
 	</div>
+	<div class="clearfix"></div>
 </div>

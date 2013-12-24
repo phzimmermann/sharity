@@ -29,7 +29,9 @@ $(document).ready(function(){
 				e.preventDefault();
 				var link = $(this);
 				$('.labels').prepend($('<div class="label"><a href="#">' + link.text() + '</a><input type="hidden" value="' + link.attr('label-id') +'" name="labels[]"></div>'));
-			})
+
+			});
+			$('#searchlabels').append('<div class="clearfix"></div>');
 		});
 	});
 });

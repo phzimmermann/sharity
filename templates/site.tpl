@@ -3,9 +3,11 @@
 		<link href="$ROOT_FOLDER/public/css/960.css" type="text/css" rel="stylesheet" />
 		<link href="$ROOT_FOLDER/public/css/main.css" type="text/css" rel="stylesheet" />
 		<link href="$ROOT_FOLDER/public/css/normalize.css" type="text/css" rel="stylesheet" />
+		<link href="$ROOT_FOLDER/public/css/styles.css" type="text/css" rel="stylesheet" />
+		<link href='http://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<script src="$ROOT_FOLDER/public/js/script.js"></script>
-		<title>$SITETITLE - Sharety</title>
+		<title>$SITETITLE - Sharity</title>
 	</head>
 	<body>
 		<div class="container_12">
