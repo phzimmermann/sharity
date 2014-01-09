@@ -90,7 +90,7 @@ class Medium extends DBModel{
 
 	public function getImage(){
 		$url = 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q='.urlencode($this->getName());
-		$data = file_get_contents($url);
+		$data = $this->get_url_contents($url);
 		$json = json_decode($data);
 		$responseData = $json->responseData;
 		if($responseData->results != null){
@@ -100,6 +100,22 @@ class Medium extends DBModel{
 
 	}
 
+	private function get_url_contents($url){
+		$crl = curl_init();
+		$timeout = 5;
+		curl_setopt ($crl, CURLOPT_URL, $url);
+		curl_setopt ($crl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt ($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
+		curl_setopt($crl, CURLOPT_HEADER, 0);
+		curl_setopt($crl, CURLOPT_VERBOSE, 1);
+		curl_setopt($crl, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($crl, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($crl, CURLOPT_FAILONERROR, 0);
+
+		$ret = curl_exec($crl);
+		curl_close($crl);
+		return $ret;
+	}
 
 
 }
