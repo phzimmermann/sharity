@@ -6,6 +6,7 @@ class Medium extends DBModel{
 	private $description;
 	private $user;
 	private $userId;
+	private $price;
 
 	public function __construct($id = 0){
 		$this->_table = 'mediums';
@@ -39,6 +40,10 @@ class Medium extends DBModel{
 		return self::findAll('SELECT m.id FROM mediums AS m WHERE m.userId = :user;', array(':user' => $user->getId()));
 	}
 
+	public static function getLatest($count){
+		return self::findAll('SELECT m.id FROM mediums AS m ORDER BY m.id DESC LIMIT 0,'.$count, array());
+
+	}
 
 	/*
 	public function __toString(){
@@ -61,6 +66,12 @@ class Medium extends DBModel{
 	public function setDescription($description) { $this->description = $description; }
 	public function getDescription() { return $this->description; }
 
+	public function setPrice($price){
+		$this->price = $price;
+	}
+	public function getPrice(){
+		return number_format($this->price, 2);
+	}
 
 	public function setUserId($userId) { $this->userId = $userId; }
 	public function getUserId() { return $this->userId; }

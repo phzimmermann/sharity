@@ -3,7 +3,7 @@
 //mysql_select_db("fipich_trash") or die("Die Datenbank existiert nicht");
 final class Configuration {
 	const DB_HOST='localhost';
-	const DB_DATABASE='db_we_project';
+	const DB_DATABASE='db_we_project2';
 	const DB_PORT=3306;
 	const DB_USER='root';
 	const DB_PASSWORD='';

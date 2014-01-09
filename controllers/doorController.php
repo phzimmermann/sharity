@@ -20,6 +20,7 @@ class DoorController extends Controller {
 				$user->setEmail($params['email']);
 				$user->setName($params['email']);
 				$user->setPassword(md5('salt'.$params['password']));
+				$user->setAddress($params['address']);
 				$user->save();
 
 				Session::getInstance()->setUser($user);
@@ -61,16 +62,21 @@ class DoorController extends Controller {
 		switch($this->type){
 			case 'in':
 				$form = $this->createLoginForm();
-				$content = $this->renderSubtemplate('in', array('form' => $form->render(), 'errors' => $partialErrors->render()));
+				$registerLink = '<p>Noch kein Konto? Hier kannst Du dich registrieren. <a href="'.Configuration::ROOT_FOLDER.'/door/type/register">Registrieren</a></p>';
+				$content = $this->renderSubtemplate('in', array(
+															'form' => $form->render().$registerLink,
+															'errors' => $partialErrors->render(),
+															));
+				$this->setTitle('Anmelden.');
 				break;
 
 			case 'out':
 
 				break;
 			case 'register':
-				$this->setTitle('Registrieren Sie sich bitte.');
+				$this->setTitle('Registriere Dich bitte.');
 				$form = $this->createLoginForm();
-
+				$this->addRegisterElements($form);
 				$content = $this->renderSubtemplate('in', array(
 															'form' => $form->render(),
 															'errors' => $partialErrors->render()
@@ -97,6 +103,16 @@ class DoorController extends Controller {
 		$form->addElement($password);
 
 		$form->populate($this->params);
+
+		return $form;
+	}
+
+	private function addRegisterElements(Form &$form){
+
+		$addressElement = new FormElementTextarea('address');
+		$addressElement->setLabel('Adresse');
+
+		$form->addElement($addressElement);
 
 		return $form;
 	}

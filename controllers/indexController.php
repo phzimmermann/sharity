@@ -8,7 +8,7 @@ class IndexController extends Controller {
 	public function run($params = array()){
 		$this->setTitle('Ausleihen, Verleihen, Dinge brauchen die einem nicht gehören...');
 		$this->labels = Label::getAll();
-		$this->newestProducts = array(new PartialProduct(new Medium(1)), new PartialProduct(new Medium(2)), new PartialProduct(new Medium(3)), new PartialProduct(new Medium(4)));
+		$this->newestProducts = Medium::getLatest(4); //(new PartialProduct(new Medium(1)), new PartialProduct(new Medium(2)), new PartialProduct(new Medium(3)), new PartialProduct(new Medium(4)));
 		return;
 	}
 
@@ -22,6 +22,7 @@ class IndexController extends Controller {
 
 		$params['newest'] = '';
 		foreach($this->newestProducts as $product){
+			$product = new PartialProduct($product);
 			$params['newest'] .= $product->render();
 		}
 

@@ -7,6 +7,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<script src="$ROOT_FOLDER/public/js/script.js"></script>
+		<link rel="icon" type="image/png" href="$ROOT_FOLDER/public/img/logo.png">
 		<title>$SITETITLE - Sharity</title>
 	</head>
 	<body>

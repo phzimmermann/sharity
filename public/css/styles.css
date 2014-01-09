@@ -22,8 +22,12 @@ div#headerLine {
 
 }
 
-input[type=text], input[type=password], textarea {
-	width: 180px;
+input[type=text], input[type=password], input[type=date], textarea {
+	width: 100%;
+}
+
+textarea {
+	min-height: 100px;
 }
 
 input[type=submit] {
@@ -120,4 +124,11 @@ a.label:hover {
 #searchlabels .label:hover {
 	background-color: inherit;
 	text-decoration: underline;
+}
+
+.lend {
+	font-size: 25px;
+	background-color: #A8D6CA;
+	color: #FFF;
+	padding: 5px;
 }

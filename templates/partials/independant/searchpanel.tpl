@@ -1,3 +1,3 @@
-<div id="searchpanel">
-	<p>Wird geladen...</p>
+<div id="searchpanel" style="display:none;">
+
 </div>

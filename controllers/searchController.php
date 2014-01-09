@@ -47,13 +47,20 @@ class SearchController extends Controller {
 	}
 
 	private function renderAjax(){
+		header('Content-Type: text/html; charset=utf-8');
 		$params = array();
 		$params['products'] = '';
 		$params['labels'] = '';
 
+		/*
 		foreach($this->products as $product){
 			$params['products'] .= $product->getName();
 		}
+		*/
+
+
+		$list = new ListRenderer(PartialProduct::wrap($this->products));
+		$params['products'] = $list->__toString();
 
 		foreach($this->labels as $label){
 			$params['labels'] .= $this->renderPartialTemplate('label', array('label' => $label->getName(), 'labelid' => $label->getId()));

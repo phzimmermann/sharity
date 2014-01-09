@@ -39,9 +39,14 @@ class UserController extends Controller{
 		$params['name'] = $this->user->getName();
 		$params['info'] = $this->user->getInfo();
 		$params['products'] = '';
-		foreach(PartialProduct::wrap($this->products) as $partial){
+		/*
+		   foreach(PartialProduct::wrap($this->products) as $partial){
 			$params['products'] .= $partial;
 		}
+		   */
+
+		$productList = new ListRenderer(PartialProduct::wrap($this->products));
+		$params['products'] = $productList;
 
 		return $params;
 	}

@@ -1,15 +1,17 @@
 <form action="" method="POST">
 	<div class="grid_4">
-		<img src="$IMGURL" width="100%" />
+		<img src="$IMGURL" onerror="imgError(this);" width="100%" />
 	</div>
 
-	<div class="grid_7">
+	<div class="grid_4">
+		<h3>Daten zum Produkt erfassen</h3>
 		$FORM
 
 		<input type="submit" value="Speichern" />
 	</div>
 
-	<div class="labels grid_1">
+	<div class="labels grid_4">
+		<h3>Labels erfassen</h3>
 		$LABELS
 		<div id="addLabel">
 			+ Label
@@ -20,6 +22,9 @@
 
 			</div>
 		</div>
+
+		<br />
+		<p><a href="true/do/delete">Produkt L&ouml;schen</a></p>
 	</div>
 
 

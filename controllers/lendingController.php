@@ -34,7 +34,7 @@ class LendingController extends Controller{
 			$this->medium	= $this->lending->getMedium();
 		}
 
-		$this->setTitle(ucfirst($this->medium->getName()).' ausleihen - Sharely');
+		$this->setTitle(ucfirst($this->medium->getName()).' ausleihen - Sharity');
 
 		if($session->getUser()->getId() === $this->medium->getUser()->getId() && $this->lending->getId() !== 0){
 
@@ -45,32 +45,41 @@ class LendingController extends Controller{
 
 			$this->owner = true;
 		}else{
+			if($this->lending->getStatus() == null || $this->lending->getStatus() == Lending::STATUS_WRONGDATE){
 
-			$this->form = $this->getForm();
-			$this->form->populate($params);
+				$this->form = $this->getForm();
+				$this->form->populate($params);
 
-			if(!$this->form->isSubmited()){
-				$datefrom = new DateTime($this->lending->getDatefrom());
-				$dateto = new DateTime($this->lending->getDateto());
-				$this->form->getElement('datefrom')->setValue($datefrom->format('Y-m-d'));
-				$this->form->getElement('dateto')->setValue($dateto->format('Y-m-d'));
-			}else{
+				if(!$this->form->isSubmited()){
+					$datefrom = new DateTime($this->lending->getDatefrom());
+					$dateto = new DateTime($this->lending->getDateto());
+					$this->form->getElement('datefrom')->setValue($datefrom->format('Y-m-d'));
+					$this->form->getElement('dateto')->setValue($dateto->format('Y-m-d'));
+				}else{
 
-				if(true){
-					// keine Fehler
-					$this->lending->setDatefrom($params['datefrom']);
-					$this->lending->setDateto($params['dateto']);
+					if(true){
+						// keine Fehler
+						/* hier könnte man in einer Erweiterung noch prüfen ob das
+						   Medium wärend dieser Zeitspanne schon ausgeliehen wird
+						   und es gar nicht möglich ist es auszuleihen. */
 
-					$this->lending->setLender($session->getUser());
-					$this->lending->setStatus(Lending::STATUS_PENDING);
+						$this->lending->setDatefrom($params['datefrom']);
+						$this->lending->setDateto($params['dateto']);
 
-					$this->lending->save();
+						$this->lending->setLender($session->getUser());
+						$this->lending->setStatus(Lending::STATUS_PENDING);
 
-					if(!isset($params['lending'])){
-						$this->redirect($ROOT_FOLDER.'/lending/lending/'.$this->lending->getId());
+						$this->lending->save();
+
+						if(!isset($params['lending'])){
+							$this->redirect($ROOT_FOLDER.'/lending/lending/'.$this->lending->getId());
+						}
+
 					}
-
 				}
+			}else{
+				// Status _> Datum nicht bearbeitbar
+
 			}
 		}
 
@@ -89,10 +98,23 @@ class LendingController extends Controller{
 
 		}
 		*/
+
+		$partialUser = new PartialUser($this->lending->getLender());
+		$params['lender'] = $partialUser->render();
+
+		$address = $this->lending->getLender()->getAddress();
+		$params['address'] = $address == '' ? 'Bitte noch Addresse im Dashboard angeben. <a href="'.$ROOT_FOLDER.'/dashboard">Zum Dashboard</a>' : $address;
+
 		if(!$this->owner){
-			$params['content'] = $this->renderSubtemplate('start', array('form' => $this->form->render()));
+			if($this->lending->getStatus() == null || $this->lending->getStatus() == Lending::STATUS_WRONGDATE){
+				$form = $this->form->render();
+			}else{
+				$form = '<p>Ausgeliehen von ' . date_format(new DateTime($this->lending->getDatefrom()), 'd.m.y')
+					.' bis ' .date_format(new DateTime($this->lending->getDateto()), 'd.m.y');
+			}
+			$params['content'] = $this->renderSubtemplate('start', array_merge(array('form' => $form), $params));
 		}else{
-			$params['content'] = $this->renderSubtemplate('approve', array('status' => $this->lending->getLongStatus()));
+			$params['content'] = $this->renderSubtemplate('approve', array_merge(array('status' => $this->lending->getLongStatus()), $params));
 		}
 
 
@@ -107,9 +129,11 @@ class LendingController extends Controller{
 		$form->addElement($elementMedium);
 
 		$elementDateFrom = new FormElementDate('datefrom');
+		$elementDateFrom->setLabel('Ausleihdatum');
 		$form->addElement($elementDateFrom);
 
 		$elementDateTo = new FormElementDate('dateto');
+		$elementDateTo->setLabel('Rückgabedatum');
 		$form->addElement($elementDateTo);
 
 		return $form;

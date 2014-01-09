@@ -43,7 +43,13 @@ class ProductController extends Controller {
 			$this->form->populate(array(
 								'title' => $this->product->getName(),
 								'description' => $this->product->getDescription(),
+								'price'			=> $this->product->getPrice()
 							));
+
+			if(isset($params['do']) && $params['do'] == 'delete'){
+				$this->product->delete();
+				$this->redirect('dashboard');
+			}
 
 			$this->form->setSubmited($params['submitIndicator']);
 
@@ -53,12 +59,16 @@ class ProductController extends Controller {
 				$this->product->setUser($session->getUser());
 				$this->product->setName($params['title']);
 				$this->product->setDescription($params['description']);
+				$this->product->setPrice($params['price']);
 				$this->product->save();
 
 				// Save Labels
 
 				// - Delete all Labels
 				$labels = LabelMedium::findByMedium($this->product);
+				foreach($labels as $label){
+					$label->delete();
+				}
 				// - Add labels again
 				foreach($params['labels'] as $labelId){
 					$lm = new LabelMedium();
@@ -97,7 +107,7 @@ class ProductController extends Controller {
 		if(count($this->labels) > 0){
 			foreach($this->labels as $label){
 				if($this->edit){
-					$params['labels'] .= $this->renderSubtemplate('labeledit', array('label' => $label));
+					$params['labels'] .= $this->renderSubtemplate('labeledit', array('label' => $label, 'labelid' => $label->getId()));
 				}else{
 					$params['labels'] .= $this->renderPartialTemplate('label', array('label' => $label, 'labelid' => $label->getId()));
 				}
@@ -129,6 +139,9 @@ class ProductController extends Controller {
 
 		$elDescription = new FormElementTextarea('description', 'Beschreibung');
 		$form->addElement($elDescription);
+
+		$elPrice = new FormElementText('price', 'Preis');
+		$form->addElement($elPrice);
 
 		return $form;
 	}

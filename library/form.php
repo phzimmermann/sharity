@@ -2,6 +2,7 @@
 
 class Form {
 	private $elements = null;
+	private $id = null;
 
 	public function __construct(){
 		$this->elements = array();
@@ -34,7 +35,8 @@ class Form {
 
 		return $tpl->render('form/form', array(
 									'content' 	=> $content,
-									'method' 	=> 'POST'
+									'method' 	=> 'POST',
+									'id'		=> $this->getId() === null ? '' : 'id="'.$this->getId().'"'
 									));
 	}
 
@@ -54,6 +56,17 @@ class Form {
 
 	public function setSubmited($flag){
 		$this->getElement('submitIndicator')->setValue($flag);
+	}
+
+	public function setId($id){
+		$this->id = $id;
+	}
+	public function getId(){
+		return $this->id;
+	}
+
+	public function __toString(){
+		return $this->render();
 	}
 }
 

@@ -6,6 +6,7 @@ class User extends DBModel{
 	private $password;
 	private $email;
 	private $info;
+	private $address;
 
 	public function __construct($id = 0){
 		$this->_table = 'users';
@@ -51,6 +52,13 @@ class User extends DBModel{
 
 	public function setInfo($info) { $this->info = $info; }
 	public function getInfo() { return $this->info; }
+
+	public function setAddress($address){
+		$this->address = $address;
+	}
+	public function getAddress(){
+		return $this->address;
+	}
 
 	public function get_gravatar($s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
 		$url = 'http://www.gravatar.com/avatar/';

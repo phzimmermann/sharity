@@ -1,10 +1,10 @@
 <div class="grid_6">
 	<p>
-		M&ouml;chtest du Dinge Personen ausleihen, welche du nicht kennst? Hier können Sie Ihre wichtigsten Dinge Teilen an welche Sie nicht einmal Ihre liebsten Bekannten ranlassen würden.
+		Willst du Dinge die Dir nicht geh&ouml;ren benutzen? Wir bieten Dir die M&ouml;glichkeit. Ausserdem kannst Du auch noch Deine wichtigsten Dinge Teilen an welche Du nicht einmal Deine liebsten Bekannten ranlassen würden.
 	</p>
 
 	<p>
-		Viel Spass! Ihr Sharety Team
+		Viel Spass! Dein Sharity Team
 	</p>
 </div>
 

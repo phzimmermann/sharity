@@ -1,20 +1,25 @@
 <div class="grid_4">
-	<img width="100%" src="$IMGURL" />
+	<img width="100%" src="$IMGURL" onerror="imgError(this);" />
 </div>
 
-<div class="grid_7">
+<div class="grid_4">
 	$DESCRIPTION
-	$USER
+
+	<br />
+	<br />
+	<a class="lend" href="$ROOT_FOLDER/lending/medium/$ID">Ich will das ausleihen!</a>
+	<br />
+	<br />
 	$EDITLINK
+	<br />
 </div>
 
-<div class="grid_1">
+<div class="grid_4">
+	$USER
+	<br /><br />
 	$LABELS
 </div>
 
-<div class="clearfix"></div>
 
-<div class="grid_4">
-	<a href="$ROOT_FOLDER/lending/medium/$ID">Ich will das ausleihen!</a>
-</div>
+
 

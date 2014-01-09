@@ -6,6 +6,8 @@ class Lending extends DBModel{
 	const STATUS_YES		= 'yes';
 	const STATUS_NO			= 'no';
 	const STATUS_WRONGDATE	= 'wrongdate';
+	const STATUS_SENT		= 'sent';
+	const STATUS_COMPLETED	= 'completed';
 
 	private $datefrom;
 	private $dateto;
@@ -92,7 +94,7 @@ class Lending extends DBModel{
 
 	function getLender() {
 		if($this->lender === null){
-			$this->lender = new Lender($this->getLenderId());
+			$this->lender = new User($this->getLenderId());
 		}
 		return $this->lender;
 	}
@@ -128,6 +130,12 @@ class Lending extends DBModel{
 				break;
 			case self::STATUS_PENDING:
 				$longStatus = 'Ausstehend';
+				break;
+			case self::STATUS_SENT:
+				$longStatus = 'Gesendet';
+				break;
+			case self::STATUS_COMPLETED:
+				$longStatus = 'Abgeschlossen';
 				break;
 		}
 		return $longStatus;
